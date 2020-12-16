@@ -1,0 +1,75 @@
+<div class="panel panel-default" style="padding:0px; margin:15px;">
+  <div class="panel-heading" >Panel Heading</div>
+  <div class="panel-body">Panel Content</div>
+</div>
+
+
+<div class="modal-body">
+	<div class="panel panel-default" style="padding:0px; margin:0px;">
+	<div class="panel-heading" style="padding-top: 5px">Par&aacute;metros de B&uacute;squeda</div>
+	<div id="modalTrazabilidad">
+		<div class="panel-body" id="bodyBusqueda">
+			<div class="row" style="padding: 5px 30px;">
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label for="nbNombre">Nombre:</label>
+						<input class="form-control" name="nbNombre" id="nbNombre"/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label for="nbEmpresa">Empresa:</label>
+						<input class="form-control" name="nbEmpresa" id="nbEmpresa"/>
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label for="cdEmpleado">ID Empleado:</label>
+						<input class="form-control" name="cdEmpleado" id="cdEmpleado">
+					</div>
+				</div>
+				<div class="col-sm-2">
+					<div class="form-group">
+						<label for="cdTelefono">Telefono:</label>
+						<input class="form-control" name="cdTelefono" id="cdTelefono">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col-sm-12">
+		<button type="button" class="btn btn-default" id="">Agregar</button>
+		<button type="button" class="btn btn-default" id="">Eliminar</button>
+	</div>
+</div>
+</br>
+
+<div class="panel panel-default" id="" style="padding: 0p; margin: 0px; border: 0px;">
+	<div class="panel-heading" style="padding-top: 5px;">
+		Datos
+	</div>
+	<div class="panel-body" style="padding: 0px;">
+		<div  id="perfil" >
+			<table  id="tablaPerfil" data-detail-view="true" data-detail-formatter="formatterDetailPerfil">
+				<thead>
+					<tr>
+<!-- 						<th data-field="" data-sortable="true" ></th> -->
+					</tr>
+				</thead>
+			</table>
+		</div>
+	</div>
+</div>
+<br/>
+<div class="row">
+	<div class="col-sm-12">
+		<button type="button" class="btn btn-default" id="">Exportar</button>
+	</div>
+</div>
+</div>
+
+
+<script src="../js/KOTZEMPL01.js"></script>

@@ -8,7 +8,7 @@ public class InicioController {
 	
 	@GetMapping({"/login", "/"})
 	public String login() {
-		return "index";
+		return "header";
 	}
 	
 }
