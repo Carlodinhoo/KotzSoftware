@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.kotz</groupId>
-    <artifactId>kotz</artifactId>
+   	<artifactId>kotz</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
   <artifactId>kotz-front</artifactId>

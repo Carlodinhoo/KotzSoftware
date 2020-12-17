@@ -12,7 +12,7 @@
 
 var columnas = [{
 	title: 'ID Empleado',
-	field: 'cdEmpleado',
+	field: 'idEmpleado',
 	sortable: true
 //	formatter: 'formatterDate'
 },{
@@ -95,4 +95,34 @@ function formatterDetailPerfil(value, row, index){
 	return['<table class="tableForm>'+
 		'<tr><td class="tdDetail"><b>Nombre</b> '+nombres+'</td></tr>'+
 	'</table>'].join('');
+}
+
+function btnGuardarCliente(){
+	var objeto = recolectarCampos();
+	return $.ajax({
+		url : "/EmpleadoController/guardarCliente",
+		type: "POST",
+		contentType: 'application/json',
+		dataType: 'json',
+		data: JSON.stringify(objeto),
+		asyc: true
+	});
+	
+}
+
+function modalEmpleados(title){
+	$("#titleModalEmpleados").html(title);
+	$("#modalEmpleados").modal();
+}
+
+function recolectarCampos(){
+	var objeto = new Object();
+	console.log($("#nbNombreEmpleado").val());
+	console.log($("#nbEmpresaEmpleado").val());
+	console.log($("#cdTelefonoEmpleado").val());
+	objeto.nbNombre = $("#nbNombreEmpleado").val() != "" ? $("#nbNombreEmpleado").val() : null;
+	objeto.nbEmpresa = $("#nbEmpresaEmpleado").val() != "" ? $("#nbEmpresaEmpleado").val() : null;
+	objeto.cdTelefono = $("#cdTelefonoEmpleado").val() != "" ? $("#cdTelefonoEmpleado").val() : null;
+	
+	return objeto;
 }

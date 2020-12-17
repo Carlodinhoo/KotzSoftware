@@ -10,9 +10,9 @@ import javax.persistence.Id;
 public class Empleados {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ID_EMPLEADO")
-	private Integer cdEmpleado;
+	private Integer idEmpleado;
 	
 	@Column(name = "NB_EMPLEADO")
 	private String nbNombre;
@@ -41,11 +41,11 @@ public class Empleados {
 	public void setCdTelefono(String cdTelefono) {
 		this.cdTelefono = cdTelefono;
 	}
-	public Integer getCdEmpleado() {
-		return cdEmpleado;
+	public Integer getIdEmpleado() {
+		return idEmpleado;
 	}
-	public void setCdEmpleado(Integer cdEmpleado) {
-		this.cdEmpleado = cdEmpleado;
+	public void setIdEmpleado(Integer idEmpleado) {
+		this.idEmpleado = idEmpleado;
 	}
 	
 	

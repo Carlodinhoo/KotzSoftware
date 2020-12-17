@@ -9,7 +9,7 @@ import com.kotz.model.Empleados;
 
 public interface EmpleadoRepo extends CrudRepository<Empleados, Integer>{
 
-	@Query(value="SELECT ID_EMPLEADO cdEmpleado, NB_EMPLEADO nbNombre, NB_EMPRESA nbEmpresa, CD_TELEFONO cdTelefono FROM Empleados ", nativeQuery = true)
+	@Query(value="SELECT id_empleado, nb_empleado, nb_empresa, cd_telefono FROM Empleados ", nativeQuery = true)
 	List<Empleados> listaEmpleados();
 	
 }

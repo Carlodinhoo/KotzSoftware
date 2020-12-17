@@ -1,9 +1,3 @@
-<div class="panel panel-default" style="padding:0px; margin:15px;">
-  <div class="panel-heading" >Panel Heading</div>
-  <div class="panel-body">Panel Content</div>
-</div>
-
-
 <div class="modal-body">
 	<div class="panel panel-default" style="padding:0px; margin:0px;">
 	<div class="panel-heading" style="padding-top: 5px">Par&aacute;metros de B&uacute;squeda</div>
@@ -40,8 +34,8 @@
 </div>
 <br/>
 <div class="row">
-	<div class="col-sm-12">
-		<button type="button" class="btn btn-default" id="">Agregar</button>
+	<div class="col-sm-12 text-right">
+		<button type="button" class="btn btn-default" id="" onclick="modalEmpleados('Agregar Empleado');">Agregar</button>
 		<button type="button" class="btn btn-default" id="">Eliminar</button>
 	</div>
 </div>
@@ -65,11 +59,49 @@
 </div>
 <br/>
 <div class="row">
-	<div class="col-sm-12">
+	<div class="col-sm-12 text-right">
 		<button type="button" class="btn btn-default" id="">Exportar</button>
 	</div>
 </div>
 </div>
 
+<!-- MODAL ALTA -->
+<div class="modal fade" id="modalEmpleados">
+	<div class="modal-dialog modal-lg" align="center">
+		<div class="modal-content" align="left" style="width:980px; padding: 10px;">
+			<div class="modal-header">
+				<h4 id="titleModalEmpleados"></h4>
+			</div>
+			<div class="modal-body">
+				<form id="formEmpleados">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="nbNombreEmpleado">Nombre:</label>
+								<input type="text" class="form-control" id="nbNombreEmpleado" name="nbNombreEmpleado" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="nbEmpresaEmpleado">Empresa:</label>
+								<input type="text" class="form-control" id="nbEmpresaEmpleado" name="nbEmpresaEmpleado"/>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="cdTelefonoEmpleado">Telefono:</label>
+								<input type="text" class="form-control" id="cdTelefonoEmpleado" name="cdTelefonoEmpleado"/>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button class="btn btn-default btn-100" onclick="btnGuardarCliente();">Guardar</button>
+				<button class="btn btn-default btn-100" data-dismiss="modal">Cancelar</button>
+			</div>
+		</div>
+	</div>
+</div>
 
 <script src="../js/KOTZEMPL01.js"></script>
