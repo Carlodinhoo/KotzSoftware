@@ -1,15 +1,3 @@
-(function($,window,document){
-	
-	$(function(){
-		console.log("Hola mundo desde javascript");
-		
-		consultarEmpleados().done(function(data){
-			llenadoTablaEmpleado(data.response, columnas);
-		});
-	});
-	
-}(window.jQuery, window, document));
-
 var columnas = [{
 	title: 'ID Empleado',
 	field: 'idEmpleado',
@@ -30,9 +18,19 @@ var columnas = [{
 }
 ];
 
+$(function(){
+		
+		llenadoTablaEmpleado(columnas);
+		
+//		prueba().done(data) => {
+//			console.log(`se ejecuto la prueba`);
+//		});
+	
+});
 
-function llenadoTablaEmpleado(data, columns) {
-	$('#tablaPerfil').bootstrapTable('destroy').bootstrapTable({
+
+function llenadoTablaEmpleado(columns) {
+	$('#tablaPerfil').bootstrapTable({
 		pagination: true,
 		pageSize: 5,
 		pageList: [5, 25, 50],
@@ -42,8 +40,9 @@ function llenadoTablaEmpleado(data, columns) {
         maintainSelected: true,
         sortable: true,
         checkboxHeader: false,
-        data: data,
+//        data: data,
         sidePagination: 'server',
+        url: "/EmpleadoController/consultaEmpleados",
         queryParams: 'queryParams',
 		responseHandler : 'responseHandler',
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
@@ -91,7 +90,7 @@ function consultarEmpleados(){
 
 function formatterDetailPerfil(value, row, index){
 	
-	var nombres = row.nombre==null?"":row.nombre;
+	let nombres = row.nombre==null?"":row.nombre;
 	return['<table class="tableForm>'+
 		'<tr><td class="tdDetail"><b>Nombre</b> '+nombres+'</td></tr>'+
 	'</table>'].join('');
@@ -99,13 +98,16 @@ function formatterDetailPerfil(value, row, index){
 
 function btnGuardarCliente(){
 	var objeto = recolectarCampos();
-	return $.ajax({
-		url : "/EmpleadoController/guardarCliente",
-		type: "POST",
-		contentType: 'application/json',
-		dataType: 'json',
-		data: JSON.stringify(objeto),
-		asyc: true
+	guardarEmpleado(objeto).done(function(data){
+		console.log(`respuesta ${data.response}`);
+		console.log(`data ${data}`);
+		if(data != null){
+			console.log("se refresca");
+			$('#tablaPerfil').bootstrapTable('refresh', {
+				url: "/EmpleadoController/consultaEmpleados",
+			});
+			$("#modalEmpleados").hide();
+		}
 	});
 	
 }
@@ -117,12 +119,20 @@ function modalEmpleados(title){
 
 function recolectarCampos(){
 	var objeto = new Object();
-	console.log($("#nbNombreEmpleado").val());
-	console.log($("#nbEmpresaEmpleado").val());
-	console.log($("#cdTelefonoEmpleado").val());
 	objeto.nbNombre = $("#nbNombreEmpleado").val() != "" ? $("#nbNombreEmpleado").val() : null;
 	objeto.nbEmpresa = $("#nbEmpresaEmpleado").val() != "" ? $("#nbEmpresaEmpleado").val() : null;
 	objeto.cdTelefono = $("#cdTelefonoEmpleado").val() != "" ? $("#cdTelefonoEmpleado").val() : null;
 	
 	return objeto;
+}
+
+function guardarEmpleado(objeto){
+	return $.ajax({
+		url : "/EmpleadoController/guardarCliente",
+		type: "POST",
+		contentType: 'application/json',
+		dataType: 'json',
+		data: JSON.stringify(objeto),
+		asyc: true
+	});
 }

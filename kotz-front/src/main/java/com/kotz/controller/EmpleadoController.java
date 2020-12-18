@@ -37,9 +37,11 @@ public class EmpleadoController {
 		
 	}
 	
-	@PostMapping(value="/EmpleadoController/guardarCliente", consumes=MediaType.APPLICATION_JSON)
-	public ResponseEntity<String> guardarCliente(@RequestBody Empleados empleado){
+	@PostMapping(value="/EmpleadoController/guardarCliente", produces=MediaType.APPLICATION_JSON, consumes=MediaType.APPLICATION_JSON)
+	public ResponseEntity<ResponseGeneric> guardarCliente(@RequestBody Empleados empleado){
 		empleadoRepo.save(empleado);
-		return new ResponseEntity<String>("post", HttpStatus.OK);
+		ResponseGeneric response = new ResponseGeneric();
+		response.setResponse("john se la come");
+		return new ResponseEntity<ResponseGeneric>(response, HttpStatus.OK);
 	}
 }
