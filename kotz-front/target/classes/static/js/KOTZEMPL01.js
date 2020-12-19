@@ -19,18 +19,31 @@ var columnas = [{
 ];
 
 $(function(){
-		
-		llenadoTablaEmpleado(columnas);
-		
-//		prueba().done(data) => {
-//			console.log(`se ejecuto la prueba`);
-//		});
 	
+	consultarEmpleados().done(function(data){
+		llenadoTablaEmpleado(columnas, data.response);	
+	});
+		
+		
 });
 
 
-function llenadoTablaEmpleado(columns) {
-	$('#tablaPerfil').bootstrapTable({
+//$('#tablaEmpleados').bootstrapTable({
+//	  url: "/EmpleadoController/consultaEmpleados",
+//	  searching: false,
+//	  pagination: true,
+//	  search: true,
+//	  columns: [{
+//		  field: 'idEmpleado',
+//		  title: 'Item'
+//	  }]
+//	});
+
+function llenadoTablaEmpleado(columns, data) {
+	$('#tablaEmpleados').bootstrapTable({
+		scrolly: 100,
+		scrollx: true,
+		scrollCollapse: true,
 		pagination: true,
 		pageSize: 5,
 		pageList: [5, 25, 50],
@@ -40,9 +53,9 @@ function llenadoTablaEmpleado(columns) {
         maintainSelected: true,
         sortable: true,
         checkboxHeader: false,
-//        data: data,
-        sidePagination: 'server',
-        url: "/EmpleadoController/consultaEmpleados",
+        data: data,
+//        sidePagination: 'server',
+//        url: "/EmpleadoController/consultaEmpleados",
         queryParams: 'queryParams',
 		responseHandler : 'responseHandler',
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
@@ -84,13 +97,13 @@ function consultarEmpleados(){
 	return $.ajax({
 		url : "/EmpleadoController/consultaEmpleados",
 		type : "GET",
-		async : true
+		async : false
 	});
 }
 
 function formatterDetailPerfil(value, row, index){
 	
-	let nombres = row.nombre==null?"":row.nombre;
+	var nombres = row.nombre==null?"":row.nombre;
 	return['<table class="tableForm>'+
 		'<tr><td class="tdDetail"><b>Nombre</b> '+nombres+'</td></tr>'+
 	'</table>'].join('');
@@ -99,22 +112,25 @@ function formatterDetailPerfil(value, row, index){
 function btnGuardarCliente(){
 	var objeto = recolectarCampos();
 	guardarEmpleado(objeto).done(function(data){
-		console.log(`respuesta ${data.response}`);
-		console.log(`data ${data}`);
-		if(data != null){
+		if(data.response != null){
 			console.log("se refresca");
-			$('#tablaPerfil').bootstrapTable('refresh', {
-				url: "/EmpleadoController/consultaEmpleados",
+			
+			consultarEmpleados().done(function(data){
+				$('#tablaEmpleados').bootstrapTable("destroy");
+				llenadoTablaEmpleado(columnas, data.response);	
 			});
+			
+			
+//			$('#tablaEmpleados').bootstrapTable('load', data.response);
 			$("#modalEmpleados").hide();
 		}
 	});
 	
 }
 
-function modalEmpleados(title){
+function abrirModalEmpleados(title){
 	$("#titleModalEmpleados").html(title);
-	$("#modalEmpleados").modal();
+	$("#modalEmpleados").show();
 }
 
 function recolectarCampos(){

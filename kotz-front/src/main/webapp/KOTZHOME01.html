@@ -1,3 +1,6 @@
+<br/>
+<br/>
+<br/>
 <div class="modal-body">
 	<div class="panel panel-default" style="padding:0px; margin:0px;">
 	<div class="panel-heading" style="padding-top: 5px">Par&aacute;metros de B&uacute;squeda</div>
@@ -35,7 +38,7 @@
 <br/>
 <div class="row">
 	<div class="col-sm-12 text-right">
-		<button type="button" class="btn btn-default" id="" onclick="modalEmpleados('Agregar Empleado');">Agregar</button>
+		<button type="button" class="btn btn-default" id="" onclick="abrirModalEmpleados('Agregar Empleado');">Agregar</button>
 		<button type="button" class="btn btn-default" id="">Eliminar</button>
 	</div>
 </div>
@@ -47,12 +50,8 @@
 	</div>
 	<div class="panel-body" style="padding: 0px;">
 		<div  id="perfil" >
-			<table  id="tablaPerfil" data-detail-view="true" data-detail-formatter="formatterDetailPerfil">
-				<thead>
-					<tr>
-<!-- 						<th data-field="" data-sortable="true" ></th> -->
-					</tr>
-				</thead>
+			<table  id="tablaEmpleados"  data-show-refresh="false" data-detail-view="true" data-detail-formatter="formatterDetailPerfil">
+				
 			</table>
 		</div>
 	</div>
@@ -66,7 +65,7 @@
 </div>
 
 <!-- MODAL ALTA -->
-<div class="modal fade" id="modalEmpleados">
+<div class="modal" id="modalEmpleados">
 	<div class="modal-dialog modal-lg" align="center">
 		<div class="modal-content" align="left" style="width:980px; padding: 10px;">
 			<div class="modal-header">

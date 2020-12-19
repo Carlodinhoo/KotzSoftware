@@ -41,7 +41,7 @@ public class EmpleadoController {
 	public ResponseEntity<ResponseGeneric> guardarCliente(@RequestBody Empleados empleado){
 		empleadoRepo.save(empleado);
 		ResponseGeneric response = new ResponseGeneric();
-		response.setResponse("john se la come");
+		response.setResponse("OK");
 		return new ResponseEntity<ResponseGeneric>(response, HttpStatus.OK);
 	}
 }
