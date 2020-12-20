@@ -47,4 +47,46 @@
 		</table>
 	</div>
 </div>
+
+<!-- MODAL -->
+<div class="modal" id="modalEmpleados">
+	<div class="modal-dialog modal-lg" align="center">
+		<div class="modal-content" >
+			<div class="modal-header">
+				<h5 class="modal-title" id="titleModalEmpleados"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true"></span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form id="formEmpleados">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="nbNombreEmpleado">Nombre:</label>
+								<input type="text" class="form-control" id="nbNombreEmpleado" name="nbNombreEmpleado" />
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="nbEmpresaEmpleado">Empresa:</label>
+								<input type="text" class="form-control" id="nbEmpresaEmpleado" name="nbEmpresaEmpleado"/>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="form-group">
+								<label for="cdTelefonoEmpleado">Telefono:</label>
+								<input type="text" class="form-control" id="cdTelefonoEmpleado" name="cdTelefonoEmpleado"/>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-dark" onclick="btnGuardarCliente();">Guardar</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+			</div>
+		</div>
+	</div>
+</div>
 <script src="../js/KOTZEMPL02.js"></script>

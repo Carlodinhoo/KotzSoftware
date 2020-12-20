@@ -16,19 +16,14 @@ var columnas = [{
 	field: 'cdTelefono',
 	sortable: true
 	
-},{
-	title: 'Eventos',
-	formatter: 'operateFormatter',
-	events: 'operateEvents'
-}
-];
+}];
 
 $(function(){
 	
-//	consultarEmpleados().done(function(data){
-//		llenadoTablaEmpleado(columnas, data.response);	
-//	});
-	tablaEmpleadosURL();
+	consultarEmpleados().done(function(data){
+		llenadoTablaEmpleado(columnas, data.response);	
+	});
+//	tablaEmpleadosURL();
 		
 		
 });
@@ -102,13 +97,57 @@ function consultarEmpleados(){
 }
 
 function tablaEmpleadosURL(){
-	$tablaEmpleados.bootstrapTable('destroy').bootstrapTable({
+	$('#tablaEmpleados').bootstrapTable('destroy').bootstrapTable({
 		pagination: true,
 		pageSize: 5,
 		pageList: [5, 25, 50],
 		sortable: true,
-		side-pagination: 'server',
+		sidePagination: 'server',
 		url: "/EmpleadoController/consultaEmpleados",
-		esponse-handler: 'responseHandler'
+		responseHandler: 'responseHandler'
+	});
+}
+
+function abrirModalEmpleados(title){
+	$("#titleModalEmpleados").html(title);
+	$("#modalEmpleados").modal('show');
+}
+
+function btnGuardarCliente(){
+	$("#modalEmpleados").modal('hide');
+	var objeto = recolectarCampos();
+	guardarEmpleado(objeto).done(function(data){
+		if(data.response != null){
+			console.log("se refresca");
+			
+			consultarEmpleados().done(function(data){
+				$('#tablaEmpleados').bootstrapTable("destroy");
+				llenadoTablaEmpleado(columnas, data.response);	
+			});
+			
+			
+//			$('#tablaEmpleados').bootstrapTable('load', data.response);
+			
+		}
+	});	
+}
+
+function recolectarCampos(){
+	var objeto = new Object();
+	objeto.nbNombre = $("#nbNombreEmpleado").val() != "" ? $("#nbNombreEmpleado").val() : null;
+	objeto.nbEmpresa = $("#nbEmpresaEmpleado").val() != "" ? $("#nbEmpresaEmpleado").val() : null;
+	objeto.cdTelefono = $("#cdTelefonoEmpleado").val() != "" ? $("#cdTelefonoEmpleado").val() : null;
+	
+	return objeto;
+}
+
+function guardarEmpleado(objeto){
+	return $.ajax({
+		url : "/EmpleadoController/guardarCliente",
+		type: "POST",
+		contentType: 'application/json',
+		dataType: 'json',
+		data: JSON.stringify(objeto),
+		asyc: true
 	});
 }
